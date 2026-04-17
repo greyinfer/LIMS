@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIMS: Complete Product Strategy Intelligence Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface2: #eef0f4;
+  --surface3: #e2e5ec;
+  --border: #ced2dc;
+  --border2: #b4bace;
+  --text: #0d0f14;
+  --text2: #2c3248;
+  --text3: #525870;
+  --r: #bf3a1e;
+  --g: #158a78;
+  --b: #2060d0;
+  --y: #a06810;
+  --p: #6030b8;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+- { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: var(–sans);
+font-size: 14px;
+line-height: 1.75;
+min-height: 100vh;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(–bg); }
+::-webkit-scrollbar-thumb { background: var(–border2); border-radius: 2px; }
+
+/* ============ HEADER ============ */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 80px;
+position: relative;
+overflow: hidden;
+border-bottom: 1px solid var(–border);
+}
+
+.hero-bg {
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 70% 40%, rgba(32,96,208,0.12) 0%, transparent 60%),
+radial-gradient(ellipse 50% 40% at 20% 70%, rgba(21,138,120,0.10) 0%, transparent 50%),
+radial-gradient(ellipse 60% 80% at 50% 10%, rgba(191,58,30,0.04) 0%, transparent 60%);
+}
+
+.hero-grid {
+position: absolute; inset: 0;
+background-image:
+linear-gradient(var(–border) 1px, transparent 1px),
+linear-gradient(90deg, var(–border) 1px, transparent 1px);
+background-size: 60px 60px;
+opacity: 0.3;
+mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+.hero-eyebrow {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–g);
+margin-bottom: 24px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.hero-eyebrow::before {
+content: ‘’;
+display: block;
+width: 32px; height: 1px;
+background: var(–g);
+}
+
+.hero h1 {
+font-family: var(–serif);
+font-size: clamp(36px, 5vw, 72px);
+font-weight: 900;
+line-height: 1.05;
+margin-bottom: 24px;
+letter-spacing: -0.02em;
+}
+.hero h1 em {
+font-style: italic;
+color: transparent;
+-webkit-text-stroke: 2px rgba(13,15,20,0.4);
+}
+
+.hero-desc {
+font-size: 16px;
+color: var(–text2);
+max-width: 620px;
+margin-bottom: 40px;
+font-weight: 300;
+line-height: 1.8;
+}
+
+.hero-stats {
+display: flex; gap: 48px; flex-wrap: wrap;
+}
+.stat { border-left: 2px solid var(–border2); padding-left: 16px; }
+.stat-n { font-family: var(–serif); font-size: 32px; font-weight: 700; color: var(–y); line-height:1; }
+.stat-l { font-family: var(–mono); font-size: 10px; color: var(–text3); letter-spacing: 0.1em; margin-top: 4px; }
+
+.judge-banner {
+position: relative; z-index: 2;
+background: rgba(191,58,30,0.06);
+border: 1px solid rgba(191,58,30,0.3);
+padding: 16px 20px;
+margin-top: 40px;
+max-width: 760px;
+font-size: 13px;
+color: #bf3a1e;
+font-family: var(–mono);
+}
+.judge-banner strong { color: var(–r); }
+
+/* ============ NAV ============ */
+.sidenav {
+position: fixed;
+left: 0; top: 0;
+width: 220px; height: 100vh;
+background: var(–surface);
+border-right: 1px solid var(–border);
+padding: 80px 0 40px;
+z-index: 200;
+overflow-y: auto;
+display: flex; flex-direction: column;
+}
+@media(max-width:1100px){ .sidenav { display: none; } }
+
+.sidenav-logo {
+font-family: var(–serif);
+font-size: 14px;
+font-weight: 700;
+color: var(–text);
+padding: 0 24px 32px;
+border-bottom: 1px solid var(–border);
+margin-bottom: 16px;
+}
+.sidenav-logo span { color: var(–g); }
+
+.nav-section { padding: 0 0 16px; }
+.nav-section-label {
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–text3);
+padding: 8px 24px 4px;
+}
+.nav-link {
+display: block;
+font-size: 12px;
+color: var(–text2);
+padding: 6px 24px;
+text-decoration: none;
+cursor: pointer;
+transition: all 0.15s;
+border-left: 2px solid transparent;
+}
+.nav-link:hover { color: var(–text); background: var(–surface2); }
+.nav-link.active { color: var(–g); border-left-color: var(–g); background: rgba(21,138,120,0.08); }
+
+/* ============ MAIN LAYOUT ============ */
+.main { margin-left: 220px; }
+@media(max-width:1100px){ .main { margin-left: 0; } }
+
+/* ============ SECTION SHELL ============ */
+.chapter {
+border-bottom: 1px solid var(–border);
+padding: 80px;
+max-width: 1200px;
+}
+@media(max-width:768px){ .chapter { padding: 48px 24px; } }
+
+.chapter-header { margin-bottom: 56px; }
+.chapter-num {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+color: var(–text3);
+margin-bottom: 12px;
+display: flex; align-items: center; gap: 10px;
+}
+.chapter-num::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+max-width: 48px;
+background: var(–border2);
+}
+.chapter h2 {
+font-family: var(–serif);
+font-size: clamp(24px, 3vw, 40px);
+font-weight: 700;
+line-height: 1.15;
+margin-bottom: 12px;
+}
+.chapter-lead {
+font-size: 15px;
+color: var(–text);
+max-width: 680px;
+font-weight: 400;
+line-height: 1.7;
+}
+
+/* ============ USE CASE BLOCKS ============ */
+.uc-master-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2px;
+}
+@media(max-width:900px){ .uc-master-grid { grid-template-columns: 1fr; } }
+
+.uc-block {
+background: var(–surface);
+padding: 28px;
+}
+.uc-block-title {
+font-family: var(–serif);
+font-size: 17px;
+font-weight: 700;
+margin-bottom: 4px;
+}
+.uc-block-cat {
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–text3);
+margin-bottom: 16px;
+}
+.uc-items { list-style: none; }
+.uc-items li {
+font-size: 13px;
+color: var(–text);
+padding: 5px 0 5px 20px;
+position: relative;
+border-bottom: 1px solid rgba(255,255,255,0.04);
+line-height: 1.5;
+}
+.uc-items li:last-child { border-bottom: none; }
+.uc-items li::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 50%;
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(–border2);
+transform: translateY(-50%);
+}
+.uc-items li.core::before { background: var(–g); }
+.uc-items li.advanced::before { background: var(–b); }
+.uc-items li.cross::before { background: var(–y); }
+
+/* TAG PILLS */
+.pill {
+display: inline-block;
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.08em;
+padding: 2px 7px;
+border-radius: 2px;
+margin-right: 4px;
+vertical-align: middle;
+}
+.pill-g { background: rgba(21,138,120,0.1); color: var(–g); border: 1px solid rgba(58,190,170,0.2); }
+.pill-b { background: rgba(32,96,208,0.1); color: var(–b); border: 1px solid rgba(74,140,247,0.2); }
+.pill-r { background: rgba(191,58,30,0.1); color: var(–r); border: 1px solid rgba(224,90,58,0.2); }
+.pill-y { background: rgba(160,104,16,0.1); color: var(–y); border: 1px solid rgba(240,192,96,0.2); }
+.pill-p { background: rgba(96,48,184,0.1); color: var(–p); border: 1px solid rgba(160,108,240,0.2); }
+
+/* ============ INDUSTRY TABLE ============ */
+.industry-tabs { display: flex; gap: 0; border-bottom: 1px solid var(–border); margin-bottom: 32px; overflow-x: auto; }
+.ind-tab {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 12px 20px;
+cursor: pointer;
+color: var(–text3);
+border-bottom: 2px solid transparent;
+white-space: nowrap;
+transition: all 0.15s;
+user-select: none;
+}
+.ind-tab:hover { color: var(–text2); }
+.ind-tab.active { color: var(–g); border-bottom-color: var(–g); }
+
+.ind-panel { display: none; }
+.ind-panel.active { display: block; }
+
+.ind-panel-grid {
+display: grid;
+grid-template-columns: 280px 1fr;
+gap: 24px;
+}
+@media(max-width:768px){ .ind-panel-grid { grid-template-columns: 1fr; } }
+
+.ind-left {
+background: var(–surface);
+padding: 24px;
+border-left: 3px solid var(–g);
+}
+.ind-left.pharma { border-color: var(–b); }
+.ind-left.biotech { border-color: var(–g); }
+.ind-left.diagnostics { border-color: var(–y); }
+.ind-left.clinical { border-color: var(–r); }
+.ind-left.manufacturing { border-color: var(–p); }
+.ind-left.research { border-color: var(–text3); }
+
+.ind-name { font-family: var(–serif); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.ind-desc { font-size: 13px; color: var(–text2); margin-bottom: 20px; line-height: 1.6; }
+.ind-reqs { list-style: none; }
+.ind-reqs li { font-family: var(–mono); font-size: 11px; color: var(–text3); padding: 4px 0; }
+.ind-reqs li::before { content: ’→ ’; color: var(–g); }
+
+.ind-right { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:600px){ .ind-right { grid-template-columns: 1fr; } }
+
+.ind-feature-card {
+background: var(–surface2);
+border: 1px solid var(–border);
+padding: 16px;
+}
+.ind-feature-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.ind-feature-body { font-size: 13px; color: var(–text); line-height: 1.6; }
+
+/* ============ GAPS ============ */
+.gap-row {
+display: grid;
+grid-template-columns: 200px 1fr auto;
+gap: 16px;
+padding: 16px 0;
+border-bottom: 1px solid var(–border);
+align-items: start;
+}
+@media(max-width:700px){ .gap-row { grid-template-columns: 1fr; } }
+.gap-row:last-child { border-bottom: none; }
+
+.gap-domain { font-family: var(–mono); font-size: 11px; color: var(–text3); padding-top: 2px; }
+.gap-desc { font-size: 13px; color: var(–text); line-height: 1.6; }
+.gap-desc strong { color: var(–text); font-weight: 600; display: block; margin-bottom:2px; }
+.gap-impact {
+font-family: var(–mono);
+font-size: 10px;
+padding: 3px 8px;
+border-radius: 2px;
+white-space: nowrap;
+}
+.imp-critical { background: rgba(224,90,58,0.15); color: var(–r); }
+.imp-high { background: rgba(160,104,16,0.1); color: var(–y); }
+.imp-med { background: rgba(32,96,208,0.09); color: var(–b); }
+
+/* ============ PAIN POINTS PERSONA ============ */
+.persona-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+}
+@media(max-width:900px){ .persona-grid { grid-template-columns: 1fr; } }
+
+.persona-card {
+background: var(–surface);
+border: 1px solid var(–border);
+padding: 28px 24px;
+}
+.persona-icon { font-size: 32px; margin-bottom: 12px; }
+.persona-role { font-family: var(–serif); font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+.persona-context { font-family: var(–mono); font-size: 10px; color: var(–text3); margin-bottom: 20px; }
+
+.pain-item {
+padding: 10px 0;
+border-bottom: 1px solid rgba(255,255,255,0.05);
+font-size: 12px;
+color: var(–text2);
+line-height: 1.5;
+}
+.pain-item:last-child { border-bottom: none; }
+.pain-item strong { color: var(–text); display: block; margin-bottom: 2px; font-size: 12px; }
+.pain-quote {
+font-family: var(–mono);
+font-size: 11px;
+color: var(–text3);
+border-left: 2px solid var(–border2);
+padding-left: 10px;
+margin-top: 6px;
+font-style: italic;
+}
+
+/* ============ INNOVATION ============ */
+.opp-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 16px;
+}
+@media(max-width:700px){ .opp-grid { grid-template-columns: 1fr; } }
+
+.opp-card {
+border: 1px solid var(–border);
+padding: 24px;
+position: relative;
+overflow: hidden;
+transition: border-color 0.2s;
+}
+.opp-card:hover { border-color: var(–border2); }
+.opp-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0;
+width: 100%; height: 2px;
+}
+.opp-card.o1::before { background: var(–g); }
+.opp-card.o2::before { background: var(–b); }
+.opp-card.o3::before { background: var(–y); }
+.opp-card.o4::before { background: var(–r); }
+.opp-card.o5::before { background: var(–p); }
+.opp-card.o6::before { background: linear-gradient(90deg, var(–g), var(–b)); }
+
+.opp-num {
+font-family: var(–mono);
+font-size: 48px;
+font-weight: 300;
+color: rgba(255,255,255,0.04);
+line-height: 1;
+position: absolute;
+top: 12px; right: 16px;
+}
+.opp-title { font-family: var(–serif); font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.opp-body { font-size: 13px; color: var(–text); line-height: 1.7; }
+.opp-signals {
+margin-top: 12px;
+display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+/* ============ ARCHITECTURE ============ */
+.arch-system {
+background: var(–surface);
+border: 1px solid var(–border);
+padding: 40px;
+margin-bottom: 32px;
+position: relative;
+}
+.arch-system-title {
+font-family: var(–serif);
+font-size: 22px;
+font-weight: 700;
+margin-bottom: 4px;
+}
+.arch-system-sub { font-size: 13px; color: var(–text2); margin-bottom: 32px; }
+
+.arch-stack { display: flex; flex-direction: column; gap: 2px; }
+
+.arch-tier {
+display: grid;
+grid-template-columns: 160px 1fr;
+min-height: 56px;
+}
+@media(max-width:600px){ .arch-tier { grid-template-columns: 1fr; } }
+
+.tier-label {
+background: var(–surface3);
+padding: 12px 16px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+border-left: 3px solid;
+}
+.tier-name { font-family: var(–mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.tier-sub { font-size: 11px; color: var(–text3); margin-top: 2px; }
+
+.tier-content {
+background: rgba(255,255,255,0.02);
+padding: 12px 16px;
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+align-items: center;
+border: 1px solid var(–border);
+border-left: none;
+}
+
+.tier-chip {
+font-family: var(–mono);
+font-size: 10px;
+padding: 3px 9px;
+background: var(–surface3);
+border: 1px solid var(–border);
+color: var(–text2);
+border-radius: 2px;
+font-weight: 500;
+}
+.tier-chip.new { background: rgba(21,138,120,0.09); color: var(–g); border-color: rgba(58,190,170,0.25); }
+.tier-chip.ai { background: rgba(32,96,208,0.09); color: var(–b); border-color: rgba(74,140,247,0.25); }
+.tier-chip.diff { background: rgba(160,104,16,0.09); color: var(–y); border-color: rgba(240,192,96,0.2); }
+
+.t-ux { border-color: var(–g); }
+.t-ux .tier-name { color: var(–g); }
+.t-ai { border-color: var(–b); }
+.t-ai .tier-name { color: var(–b); }
+.t-wf { border-color: var(–y); }
+.t-wf .tier-name { color: var(–y); }
+.t-data { border-color: var(–p); }
+.t-data .tier-name { color: var(–p); }
+.t-comp { border-color: var(–r); }
+.t-comp .tier-name { color: var(–r); }
+.t-infra { border-color: var(–text3); }
+.t-infra .tier-name { color: var(–text3); }
+
+.principles-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+margin-top: 32px;
+}
+@media(max-width:768px){ .principles-grid { grid-template-columns: 1fr; } }
+
+.principle {
+background: var(–surface2);
+padding: 24px;
+border-top: 1px solid var(–border);
+}
+.principle-icon { font-size: 24px; margin-bottom: 12px; }
+.principle-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.principle-body { font-size: 13px; color: var(–text2); line-height: 1.6; }
+
+/* ============ COMPARISON TABLE ============ */
+.comp-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+.comp-table th {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–text3);
+text-align: left;
+padding: 10px 16px;
+border-bottom: 1px solid var(–border);
+white-space: nowrap;
+}
+.comp-table td {
+font-size: 12px;
+color: var(–text2);
+padding: 12px 16px;
+border-bottom: 1px solid rgba(255,255,255,0.04);
+vertical-align: top;
+}
+.comp-table tr:hover td { background: #e8ebf2; }
+.comp-table td:first-child { font-weight: 500; color: var(–text); font-size: 13px; }
+
+/* ============ DIVIDERS ============ */
+.divider { height: 1px; background: var(–border); margin: 32px 0; }
+
+.callout {
+background: var(–surface2);
+border: 1px solid var(–border);
+border-left: 3px solid var(–y);
+padding: 16px 20px;
+margin: 24px 0;
+font-size: 13px;
+color: var(–text);
+}
+.callout strong { color: var(–y); }
+
+/* ============ FOOTER ============ */
+.report-footer {
+background: #0d0f14;
+color: #e8eaf0;
+padding: 64px 80px;
+border-top: 1px solid var(–border);
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 48px;
+}
+@media(max-width:768px){ .report-footer { padding: 40px 24px; grid-template-columns: 1fr; } }
+
+.footer-verdict {
+font-family: var(–serif);
+font-size: 28px;
+font-weight: 700;
+line-height: 1.3;
+margin-bottom: 16px;
+}
+.footer-verdict em { font-style: italic; color: #3abeaa; }
+.footer-body { font-size: 14px; color: rgba(232,234,240,0.75); line-height: 1.8; }
+.footer-meta { display: flex; flex-direction: column; justify-content: flex-end; }
+.footer-meta-item {
+font-family: var(–mono);
+font-size: 11px;
+color: rgba(232,234,240,0.45);
+padding: 6px 0;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-meta-item span { float: right; color: rgba(232,234,240,0.8); }
+
+/* ============ ANIMATIONS ============ */
+.reveal {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+
+</head>
+<body>
+
+<!-- SIDE NAV -->
+
+<nav class="sidenav">
+  <div class="sidenav-logo">LIMS <span>Intelligence</span></div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Use Cases</div>
+    <a class="nav-link" href="#uc-core">Core Use Cases</a>
+    <a class="nav-link" href="#uc-advanced">Advanced &amp; Emerging</a>
+    <a class="nav-link" href="#uc-cross">Cross-Functional</a>
+    <a class="nav-link" href="#uc-industry">Industry Variations</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Analysis</div>
+    <a class="nav-link" href="#gaps">Gaps &amp; Limitations</a>
+    <a class="nav-link" href="#pain">Pain Points by Persona</a>
+    <a class="nav-link" href="#tech-gaps">Technology Gaps</a>
+    <a class="nav-link" href="#biz-gaps">Operational Gaps</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Strategy</div>
+    <a class="nav-link" href="#innovation">Innovation Opportunities</a>
+    <a class="nav-link" href="#architecture">Next-Gen Architecture</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+
+<main class="main">
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Product Strategy · Life Sciences Software · V2.0 Comprehensive</div>
+    <h1>LIMS: The Complete<br><em>Intelligence</em> Report</h1>
+    <p class="hero-desc">A product strategy and consulting analysis covering use cases across six industry verticals, gaps in current solutions, persona-level pain points, and a proposed next-generation architecture. Expands and corrects the prior version.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Industry Verticals</div></div>
+      <div class="stat"><div class="stat-n">80+</div><div class="stat-l">Use Cases Mapped</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">User Personas</div></div>
+      <div class="stat"><div class="stat-n">12</div><div class="stat-l">Innovation Vectors</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHAPTER: CORE USE CASES -->
+
+<section class="chapter reveal" id="uc-core">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 01 · USE CASES — TIER 1</div>
+    <h2>Core Use Cases<br><em>Table Stakes for Any LIMS</em></h2>
+    <p class="chapter-lead">These are non-negotiable. Any LIMS that cannot execute these reliably is not a LIMS — it's a database with a laboratory theme. These represent the foundational buying criteria.</p>
+  </div>
+
+  <div class="uc-master-grid">
+    <div class="uc-block">
+      <div class="uc-block-title">Sample Management &amp; Chain of Custody</div>
+      <div class="uc-block-cat"><span class="pill pill-g">CORE</span> Foundational · All Industries</div>
+      <ul class="uc-items">
+        <li class="core">Sample registration with full metadata capture (source, type, condition, collector)</li>
+        <li class="core">Barcode / RFID / QR-based labelling and scanning</li>
+        <li class="core">Chain of custody — who handled what, when, and where</li>
+        <li class="core">Sample splitting, aliquoting, and derivative tracking</li>
+        <li class="core">Sample storage location management (freezer, shelf, rack, box, position)</li>
+        <li class="core">Sample disposal and destruction authorisation with audit trail</li>
+        <li class="core">Retention scheduling and automated expiry alerts</li>
+        <li class="core">Sample login queues and batching for high-throughput labs</li>
+      </ul>
+    </div>
+
+```
+<div class="uc-block">
+  <div class="uc-block-title">Workflow &amp; Task Management</div>
+  <div class="uc-block-cat"><span class="pill pill-g">CORE</span> Foundational · All Industries</div>
+  <ul class="uc-items">
+    <li class="core">Configurable test and assay workflows with defined steps and dependencies</li>
+    <li class="core">Role-based work queue assignment — analyst, reviewer, approver</li>
+    <li class="core">Real-time workflow status tracking and turnaround time monitoring</li>
+    <li class="core">Multi-step approval chains with electronic co-sign and witness requirements</li>
+    <li class="core">SOP linkage within workflow steps — surfaced contextually, not in a document library</li>
+    <li class="core">Workflow branching based on result ranges (e.g., auto-escalate OOS)</li>
+    <li class="core">Workload forecasting and analyst capacity visibility</li>
+    <li class="core">Repeat and re-test authorisation workflows with original result preservation</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Result Entry, Validation &amp; Calculation</div>
+  <div class="uc-block-cat"><span class="pill pill-g">CORE</span> Foundational · All Industries</div>
+  <ul class="uc-items">
+    <li class="core">Structured data entry with field-level validation rules and reference ranges</li>
+    <li class="core">Built-in calculation engine — dilution factors, conversions, derived results</li>
+    <li class="core">Automatic OOS / OOT / specification check with alert and hold</li>
+    <li class="core">Instrument result import via direct integration or file parse</li>
+    <li class="core">Manual override with mandatory justification and dual-sign</li>
+    <li class="core">Units conversion and normalisation across assays</li>
+    <li class="core">Partial result save and resume without data loss</li>
+    <li class="core">Inter-laboratory data submission and external result import</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Reporting &amp; Certificate Generation</div>
+  <div class="uc-block-cat"><span class="pill pill-g">CORE</span> Foundational · All Industries</div>
+  <ul class="uc-items">
+    <li class="core">Certificate of Analysis (CoA) — auto-populated, printable, e-signed</li>
+    <li class="core">Test report generation with configurable templates per client/product</li>
+    <li class="core">Batch release reports with full result summary and specification check</li>
+    <li class="core">Standard statistical reports — mean, SD, CV, trending, control charts</li>
+    <li class="core">Scheduled report delivery to internal and external stakeholders</li>
+    <li class="core">Custom report builder for ad-hoc analysis without IT dependency</li>
+    <li class="core">Export to PDF, Excel, LOINC, HL7 FHIR formats</li>
+    <li class="core">Audit-ready study record compilation for regulatory review</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Compliance, Audit Trail &amp; E-Signature</div>
+  <div class="uc-block-cat"><span class="pill pill-g">CORE</span> Regulated Industries · GxP</div>
+  <ul class="uc-items">
+    <li class="core">Immutable, timestamped audit trail on every data event — create, modify, delete</li>
+    <li class="core">21 CFR Part 11 and Annex 11-compliant electronic signatures</li>
+    <li class="core">Role-based access control with full permission audit</li>
+    <li class="core">ALCOA+ data integrity compliance by design (Attributable, Legible, Contemporaneous, Original, Accurate)</li>
+    <li class="core">Password policy management, session timeout, and access revocation</li>
+    <li class="core">Data backup, disaster recovery, and retention policy enforcement</li>
+    <li class="core">Periodic system access review and orphan account detection</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Instrument &amp; Equipment Management</div>
+  <div class="uc-block-cat"><span class="pill pill-g">CORE</span> All Lab Types</div>
+  <ul class="uc-items">
+    <li class="core">Instrument registration and status tracking (in-service, calibration, out-of-service)</li>
+    <li class="core">Calibration scheduling with automated due-date alerts and overdue blocks</li>
+    <li class="core">Preventive maintenance tracking and work-order generation</li>
+    <li class="core">Instrument-to-result linkage — every result tagged to the equipment that generated it</li>
+    <li class="core">Out-of-tolerance instrument flagging — automatic hold on pending results</li>
+    <li class="core">Service record and repair history per instrument</li>
+    <li class="core">Qualification documentation (IQ/OQ/PQ) repository</li>
+  </ul>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- CHAPTER: ADVANCED USE CASES -->
+
+<section class="chapter reveal" id="uc-advanced">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 02 · USE CASES — TIER 2</div>
+    <h2>Advanced &amp; Emerging Use Cases<br><em>The Competitive Battleground</em></h2>
+    <p class="chapter-lead">These separate leading platforms from legacy systems. Many are driven by the convergence of AI, genomics, IoT, and the digital transformation of laboratory operations. These are the capabilities that define the next LIMS generation.</p>
+  </div>
+
+  <div class="uc-master-grid">
+    <div class="uc-block">
+      <div class="uc-block-title">AI-Assisted Quality Intelligence</div>
+      <div class="uc-block-cat"><span class="pill pill-b">ADVANCED</span> <span class="pill pill-b">EMERGING</span> AI-Native</div>
+      <ul class="uc-items">
+        <li class="advanced">Predictive OOS — ML models trained on historical result patterns to flag probable failures before completion</li>
+        <li class="advanced">Anomaly detection across instrument drift, analyst bias, and reagent lot effects</li>
+        <li class="advanced">Natural language investigation assistant — "show me all failures linked to lot X in the last 90 days"</li>
+        <li class="advanced">Automated root cause hypothesis generation for deviations</li>
+        <li class="advanced">Westgard rule monitoring with AI pattern extension beyond static rules</li>
+        <li class="advanced">Cross-study signal detection — e.g., trending method failures across products</li>
+      </ul>
+    </div>
+
+```
+<div class="uc-block">
+  <div class="uc-block-title">Genomics &amp; Multi-Omics Data Management</div>
+  <div class="uc-block-cat"><span class="pill pill-b">ADVANCED</span> Biotech · Research · Pharma</div>
+  <ul class="uc-items">
+    <li class="advanced">NGS sample and library tracking — from DNA extraction through sequencing to variant output</li>
+    <li class="advanced">Sequencing run management — instrument integration with Illumina, Oxford Nanopore, PacBio</li>
+    <li class="advanced">Variant annotation pipeline orchestration and result storage in structured schemas</li>
+    <li class="advanced">Multi-omics data linkage — connect genomic, proteomic, and metabolomic datasets per sample</li>
+    <li class="advanced">Clinical genomics: genotype-phenotype linkage with patient record integration</li>
+    <li class="advanced">FAIR-compliant data export for publication and regulatory submission</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Digital Lab &amp; Autonomous Experimentation</div>
+  <div class="uc-block-cat"><span class="pill pill-b">EMERGING</span> Research · Biotech</div>
+  <ul class="uc-items">
+    <li class="advanced">Integration with robotic liquid handlers (Hamilton, Tecan, Beckman) for closed-loop experiment execution</li>
+    <li class="advanced">Lab automation orchestration — LIMS as the control layer for autonomous workflows</li>
+    <li class="advanced">Active learning integration — AI proposes next experiment based on current results</li>
+    <li class="advanced">Digital twin of lab processes — simulate batch before physical execution</li>
+    <li class="advanced">Self-optimising protocols — system adjusts parameters within validated bounds based on prior run data</li>
+    <li class="advanced">IoT sensor integration for real-time environmental and process data</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Advanced Statistical &amp; Analytical Capabilities</div>
+  <div class="uc-block-cat"><span class="pill pill-b">ADVANCED</span> QC-Intensive Labs</div>
+  <ul class="uc-items">
+    <li class="advanced">Multivariate statistical process control (MSPC) for complex product matrices</li>
+    <li class="advanced">Stability study management — ICH-compliant protocols, regression modelling, shelf-life prediction</li>
+    <li class="advanced">Method validation execution — designed experiments, recovery, precision, linearity tracking</li>
+    <li class="advanced">Measurement uncertainty calculation and propagation</li>
+    <li class="advanced">Equivalence testing and method transfer statistical packages</li>
+    <li class="advanced">Bayesian trend detection for low-n manufacturing QC scenarios</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Continuous Manufacturing &amp; Real-Time Release</div>
+  <div class="uc-block-cat"><span class="pill pill-b">ADVANCED</span> Pharma Manufacturing</div>
+  <ul class="uc-items">
+    <li class="advanced">Real-Time Release Testing (RTRT) — replace end-product testing with in-process PAT data</li>
+    <li class="advanced">Process Analytical Technology (PAT) sensor feed integration and spec mapping</li>
+    <li class="advanced">Continuous manufacturing batch definition and virtual batch management</li>
+    <li class="advanced">Risk-based release triggers — automated release on PAT confidence score</li>
+    <li class="advanced">Golden batch comparison — real-time deviation from reference manufacturing profile</li>
+  </ul>
+</div>
+
+<div class="uc-block">
+  <div class="uc-block-title">Knowledge Management &amp; Institutional Memory</div>
+  <div class="uc-block-cat"><span class="pill pill-b">EMERGING</span> All Labs</div>
+  <ul class="uc-items">
+    <li class="advanced">AI-indexed scientific knowledge base built from historical notebooks, SOPs, deviations, and investigations</li>
+    <li class="advanced">Expert knowledge capture — record rationale for protocol decisions, not just outcomes</li>
+    <li class="advanced">Semantic search across all laboratory records — cross-study, cross-product, cross-analyst</li>
+    <li class="advanced">Automated onboarding context — new analyst gets AI summary of method history and known issues</li>
+    <li class="advanced">Departure knowledge transfer — exit interview structured capture into system memory</li>
+  </ul>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- CHAPTER: CROSS-FUNCTIONAL -->
+
+<section class="chapter reveal" id="uc-cross">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 03 · USE CASES — TIER 3</div>
+    <h2>Cross-Functional Integration Use Cases<br><em>Where LIMS Becomes Enterprise Infrastructure</em></h2>
+    <p class="chapter-lead">These use cases only exist at the boundary between LIMS and other enterprise systems. They are where the most value is created — and where current platforms most consistently fail. Strong here = enterprise platform. Weak here = departmental tool.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Product Strategy Note:</strong> Cross-functional integration is the moat. A lab system that genuinely integrates with ERP, MES, clinical systems, and regulatory platforms cannot be easily replaced — switching costs are enormous. Prioritise integration breadth and depth in the platform roadmap.
+  </div>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Integration Domain</th>
+        <th>Key Use Cases</th>
+        <th>Data Exchanged</th>
+        <th>Business Value</th>
+        <th>Maturity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ERP (SAP, Oracle)</td>
+        <td>Auto-trigger sample testing on goods receipt; reagent consumption updates inventory; release status syncs to batch disposition</td>
+        <td>Purchase orders, material lots, inventory levels, release status</td>
+        <td>Eliminate manual data re-entry; real-time cost attribution per batch</td>
+        <td><span class="pill pill-y">Partial</span></td>
+      </tr>
+      <tr>
+        <td>MES (Manufacturing Execution)</td>
+        <td>In-process QC results fed into MES for go/no-go decisions; batch records merged; electronic batch record (eBR) co-authoring</td>
+        <td>Process parameters, batch IDs, in-process test results, equipment status</td>
+        <td>Closed-loop manufacturing control; paperless batch record; real-time release path</td>
+        <td><span class="pill pill-r">Limited</span></td>
+      </tr>
+      <tr>
+        <td>EMR / EHR (Clinical Systems)</td>
+        <td>Lab order receipt from clinical systems; result return via HL7 FHIR; patient demographic sync; critical value alerting</td>
+        <td>Lab orders (HL7 v2/FHIR), results, patient demographics, provider details</td>
+        <td>Eliminate manual order transcription; closed-loop clinical-lab workflow; faster critical value response</td>
+        <td><span class="pill pill-g">Mature</span></td>
+      </tr>
+      <tr>
+        <td>Regulatory Submission (eCTD)</td>
+        <td>Auto-compile study data packages; map LIMS data to CTD sections; maintain dataset lineage from raw to submission</td>
+        <td>Study reports, raw data, CoAs, certificates, method validations</td>
+        <td>Reduce submission compilation effort by 60–80%; continuous inspection readiness</td>
+        <td><span class="pill pill-r">Limited</span></td>
+      </tr>
+      <tr>
+        <td>CTMS (Clinical Trial Systems)</td>
+        <td>Sample tracking linked to trial subject IDs; protocol-driven testing triggered from CTMS visit events; biobank integration</td>
+        <td>Subject identifiers, visit schedules, sample kit assignments, protocol versions</td>
+        <td>Single source of truth for clinical sample status; no manual reconciliation between CTMS and LIMS</td>
+        <td><span class="pill pill-y">Partial</span></td>
+      </tr>
+      <tr>
+        <td>EDC (Electronic Data Capture)</td>
+        <td>Direct data transfer from LIMS to EDC for sponsor submission; bidirectional reconciliation; query management</td>
+        <td>Central lab results, reference ranges, units, flags, audit trails</td>
+        <td>Eliminate transcription errors; faster database lock; fewer data queries</td>
+        <td><span class="pill pill-y">Partial</span></td>
+      </tr>
+      <tr>
+        <td>Bioinformatics Platforms</td>
+        <td>Sample metadata to analysis pipeline; results back into LIMS; provenance maintained through computational steps</td>
+        <td>FASTQ files, VCF, annotation tables, pipeline parameters, QC metrics</td>
+        <td>End-to-end traceability from sample to genomic finding; re-analysis with new reference data</td>
+        <td><span class="pill pill-r">Early</span></td>
+      </tr>
+      <tr>
+        <td>Supply Chain / Procurement</td>
+        <td>Reagent lot approval triggered by QC testing; supplier CoA ingestion and verification; auto-reorder on stock trigger</td>
+        <td>Supplier CoAs, lot test results, stock levels, purchase requisitions</td>
+        <td>Reduce stockouts; block unapproved reagent lots from workflow; full supplier traceability</td>
+        <td><span class="pill pill-r">Limited</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CHAPTER: INDUSTRY VARIATIONS -->
+
+<section class="chapter reveal" id="uc-industry">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 04 · INDUSTRY VARIATIONS</div>
+    <h2>How LIMS Requirements Differ by Industry<br><em>One Platform Cannot Serve All Labs Equally</em></h2>
+    <p class="chapter-lead">A diagnostics lab and a drug discovery lab share the LIMS label but have near-opposite priorities. Understanding these variations is essential for product positioning and feature prioritisation.</p>
+  </div>
+
+  <div class="industry-tabs">
+    <div class="ind-tab active" onclick="showIndustry('pharma', this)">Pharmaceuticals</div>
+    <div class="ind-tab" onclick="showIndustry('biotech', this)">Biotechnology</div>
+    <div class="ind-tab" onclick="showIndustry('diagnostics', this)">Diagnostics</div>
+    <div class="ind-tab" onclick="showIndustry('clinical', this)">Clinical Research</div>
+    <div class="ind-tab" onclick="showIndustry('manufacturing', this)">Manufacturing QC</div>
+    <div class="ind-tab" onclick="showIndustry('research', this)">Research &amp; Academic</div>
+  </div>
+
+  <!-- PHARMA -->
+
+  <div class="ind-panel active" id="ind-pharma">
+    <div class="ind-panel-grid">
+      <div class="ind-left pharma">
+        <div class="ind-name">Pharmaceuticals</div>
+        <div class="ind-desc">Highly regulated drug development and QC. Focus is on compliance, batch release, stability, and regulatory submission. Every data point must be defensible to FDA/EMA.</div>
+        <ul class="ind-reqs">
+          <li>21 CFR Part 11 / Annex 11</li>
+          <li>ICH Q guidelines (Q7, Q9, Q10)</li>
+          <li>GMP / GLP environment</li>
+          <li>Electronic Batch Record</li>
+          <li>Regulatory submission packages</li>
+        </ul>
+      </div>
+      <div class="ind-right">
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Stability Study Management</div>
+          <div class="ind-feature-body">ICH-protocol driven scheduling, automated pull lists, accelerated and real-time study arms, regression and shelf-life prediction with statistical confidence intervals.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Validated System Architecture</div>
+          <div class="ind-feature-body">Computer System Validation (CSV) with full IQ/OQ/PQ documentation. Risk-based validation approach per GAMP 5. Change control with re-validation impact assessment.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Batch Release &amp; Disposition</div>
+          <div class="ind-feature-body">Multi-tier approval workflow. Conditional release. Reject and rework authorisation. Integration with ERP batch status. Regulatory hold management.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">OOS / OOT Investigation Management</div>
+          <div class="ind-feature-body">Structured Phase 1 (lab investigation) and Phase 2 (full investigation) workflows with CAPA linkage, re-test authorisation, invalidation justification, and regulatory reportability assessment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIOTECH -->
+
+  <div class="ind-panel" id="ind-biotech">
+    <div class="ind-panel-grid">
+      <div class="ind-left biotech">
+        <div class="ind-name">Biotechnology</div>
+        <div class="ind-desc">Biologics development, cell and gene therapy, genomics, and protein science. High complexity samples, iterative R&amp;D workflows, and emerging regulatory frameworks. Speed and flexibility matter as much as compliance.</div>
+        <ul class="ind-reqs">
+          <li>Cell line tracking and genealogy</li>
+          <li>Biologics-specific stability</li>
+          <li>Sequence data management</li>
+          <li>BLA / MAA submission support</li>
+          <li>Cold chain integrity</li>
+        </ul>
+      </div>
+      <div class="ind-right">
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Cell &amp; Gene Therapy Tracking</div>
+          <div class="ind-feature-body">Patient-specific sample genealogy. Autologous vs allogeneic tracking. Chain of identity from donor to patient dose. Lentiviral / AAV vector lot management.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">NGS &amp; Genomics Integration</div>
+          <div class="ind-feature-body">Sequencing library prep tracking. Run-to-result traceability. Integration with Illumina DRAGEN, GATK pipelines. Multi-omics data linkage per sample.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Biobank &amp; Biorepository</div>
+          <div class="ind-feature-body">Long-term biospecimen storage management. Sample viability tracking. Consent-driven access controls. Automated pull lists for studies. Cryogenic storage integration.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">ELN-First Research Workflows</div>
+          <div class="ind-feature-body">Discovery-phase labs need flexible ELN with LIMS-grade tracking. Experiment-driven sample creation. Free-form observation capture alongside structured results. IP timestamping.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIAGNOSTICS -->
+
+  <div class="ind-panel" id="ind-diagnostics">
+    <div class="ind-panel-grid">
+      <div class="ind-left diagnostics">
+        <div class="ind-name">Diagnostics</div>
+        <div class="ind-desc">Clinical and reference laboratories processing high volumes of patient samples. Turnaround time, HL7/FHIR integration, and critical value management are paramount. Volume can be 1,000–50,000 samples per day.</div>
+        <ul class="ind-reqs">
+          <li>HL7 v2.x and FHIR integration</li>
+          <li>ISO 15189 / CLIA compliance</li>
+          <li>Critical value alerting</li>
+          <li>TAT (Turnaround Time) SLAs</li>
+          <li>Reflex testing logic</li>
+        </ul>
+      </div>
+      <div class="ind-right">
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">High-Throughput Sample Processing</div>
+          <div class="ind-feature-body">Automated sample sorter integration (e.g., Roche MPA). Batch processing queues. Pre-analytical tracking (centrifuge, aliquoting). Tube-level tracking at scale.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Reflex &amp; Reflex Testing Logic</div>
+          <div class="ind-feature-body">Auto-triggered follow-on tests based on initial result (e.g., HIV screen reactive → confirmatory Western Blot). Rule-based reflexing without manual intervention.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Turnaround Time Dashboards</div>
+          <div class="ind-feature-body">Real-time TAT monitoring by test, department, and priority. Escalation alerts for SLA breach. Bottleneck identification. Client-facing TAT reporting portal.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">LIS Bi-directional Integration</div>
+          <div class="ind-feature-body">Seamless HL7 ADT, ORM, ORU message exchange with hospital LIS and EMR systems. FHIR R4 result submission. Critical value push notification to clinical teams.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLINICAL RESEARCH -->
+
+  <div class="ind-panel" id="ind-clinical">
+    <div class="ind-panel-grid">
+      <div class="ind-left clinical">
+        <div class="ind-name">Clinical Research (CRO / Central Lab)</div>
+        <div class="ind-desc">Multi-sponsor, multi-protocol environment. Subject-centric sample tracking with strict chain of identity. EDC integration and sponsor data delivery are core. Studies span years and multiple sites globally.</div>
+        <ul class="ind-reqs">
+          <li>ICH E6 GCP compliance</li>
+          <li>Multi-sponsor data separation</li>
+          <li>EDC / CTMS integration</li>
+          <li>Global site coordination</li>
+          <li>Chain of identity (patient→sample)</li>
+        </ul>
+      </div>
+      <div class="ind-right">
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Protocol-Driven Sample Management</div>
+          <div class="ind-feature-body">Visit-level sample expectations defined by protocol. Kit management and pre-labelling for site kits. Expected vs received reconciliation. Protocol amendment management.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Subject Blind / Unblinding Controls</div>
+          <div class="ind-feature-body">Randomisation code-linked sample management. Controlled unblinding workflows. Treatment arm-aware reference ranges. Patient-level data firewall between sponsor studies.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">EDC Data Transfer</div>
+          <div class="ind-feature-body">Automated result transmission to EDC (Medidata Rave, Oracle InForm, Veeva Vault). CDISC CDASH/SDTM mapping. Query response management. Database lock readiness tracking.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Multi-Site Global Coordination</div>
+          <div class="ind-feature-body">Site-specific reference ranges by geography and demographics. Timezone-aware TAT tracking. Global vs local accreditation compliance. Multi-currency billing integration.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANUFACTURING -->
+
+  <div class="ind-panel" id="ind-manufacturing">
+    <div class="ind-panel-grid">
+      <div class="ind-left" style="border-color:var(--p)">
+        <div class="ind-name">Manufacturing QC</div>
+        <div class="ind-desc">Quality control labs embedded in production environments. Speed of release is a competitive and operational imperative. Integration with MES and ERP is non-negotiable. Real-time release testing is the frontier.</div>
+        <ul class="ind-reqs">
+          <li>GMP batch record integration</li>
+          <li>MES / ERP real-time sync</li>
+          <li>In-process QC workflows</li>
+          <li>PAT / RTRT readiness</li>
+          <li>Rapid micro testing</li>
+        </ul>
+      </div>
+      <div class="ind-right">
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">In-Process Quality Control</div>
+          <div class="ind-feature-body">Sampling triggers from MES at defined process steps. Go/no-go decision feedback to manufacturing floor. Hold/release flags propagated in real time. Parametric release pathways.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Raw Material Testing &amp; Release</div>
+          <div class="ind-feature-body">Incoming material testing queued from ERP goods receipt. Supplier CoA comparison and verification. Reduced testing programs for approved suppliers. Auto-release on passing result.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Environmental Monitoring</div>
+          <div class="ind-feature-body">Scheduled environmental sampling plans per ISO 14644. Trend analysis for particulate and microbial excursions. Automated alert escalation. Cleanroom classification maintenance records.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">SPC &amp; Statistical Release</div>
+          <div class="ind-feature-body">Real-time Shewhart control charts. Westgard multi-rule QC. Western Electric rules. cpk/ppk trending. Automated release when SPC criteria met within validated bounds.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+
+  <div class="ind-panel" id="ind-research">
+    <div class="ind-panel-grid">
+      <div class="ind-left" style="border-color:var(--text3)">
+        <div class="ind-name">Research &amp; Academic Labs</div>
+        <div class="ind-desc">Flexibility and data sharing trump compliance. Research labs need ELN-first tooling with LIMS-grade tracking, not the reverse. Publication readiness and FAIR data principles matter. IP protection is critical.</div>
+        <ul class="ind-reqs">
+          <li>FAIR data principles</li>
+          <li>Grant-linked sample tracking</li>
+          <li>Publication data packages</li>
+          <li>IP timestamping</li>
+          <li>Flexible schema (no rigid templates)</li>
+        </ul>
+      </div>
+      <div class="ind-right">
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">ELN-First Experiment Design</div>
+          <div class="ind-feature-body">Open-ended notebook entry with schema on read — structure is applied at reporting, not at entry. Rich media support (images, spectra, microscopy files). Literature reference linking.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Grant &amp; Project Management</div>
+          <div class="ind-feature-body">Samples and experiments tagged to grant IDs and project codes. PI-level visibility across group members. Resource consumption tracked against grant budget. Publication-ready data export.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">Collaborative Research</div>
+          <div class="ind-feature-body">Multi-institution sample sharing with access controls. External collaborator portals. Data embargo management for pre-publication. DOI integration for data citation.</div>
+        </div>
+        <div class="ind-feature-card">
+          <div class="ind-feature-title">IP Protection &amp; Timestamping</div>
+          <div class="ind-feature-body">Blockchain-anchored timestamps on experiment entries. Inventor attribution tracking. Invention disclosure trigger from ELN. Patent application data package compilation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER: GAPS -->
+
+<section class="chapter reveal" id="gaps">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 05 · MARKET ANALYSIS</div>
+    <h2>Gaps &amp; Limitations in Current LIMS<br><em>The Failure Map</em></h2>
+    <p class="chapter-lead">Categorised by gap type with business impact rating. These are the failure modes that create market opportunity and justify next-generation platform investment.</p>
+  </div>
+
+  <div style="margin-bottom:32px">
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:16px;letter-spacing:0.1em;text-transform:uppercase">Functional Gaps</div>
+    <div class="gap-row">
+      <div class="gap-domain">Cross-Study Federation</div>
+      <div class="gap-desc"><strong>Siloed study data with no federated query layer.</strong> Each study is an island. Labs cannot ask "across all stability studies in the last 3 years, what was the failure rate for assay X?" without a custom BI project. This is architecturally foundational and almost universally absent.</div>
+      <div class="gap-impact imp-critical">CRITICAL</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Adaptive Workflows</div>
+      <div class="gap-desc"><strong>Workflow engines designed for QC, not discovery.</strong> Sequential, rule-based workflows cannot handle the iterative, hypothesis-driven nature of R&amp;D. Branching logic is rudimentary. No concept of a "learning" workflow that adapts based on prior run outcomes.</div>
+      <div class="gap-impact imp-critical">CRITICAL</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Biologics &amp; CGT</div>
+      <div class="gap-desc"><strong>Small-molecule LIMS heritage fails on complex biologics.</strong> Cell and gene therapy requires patient-specific chain of identity, living cell tracking, passage number management, and virology testing workflows that legacy LIMS was never designed to handle.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Multi-Tenancy</div>
+      <div class="gap-desc"><strong>Global deployment requires true multi-tenancy with data sovereignty controls.</strong> Most platforms are single-instance deployments per site. CROs and global pharma operating across 20+ jurisdictions need region-aware data isolation with global aggregate views.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:32px">
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:16px;letter-spacing:0.1em;text-transform:uppercase">Technology Gaps</div>
+    <div class="gap-row">
+      <div class="gap-domain">AI Integration</div>
+      <div class="gap-desc"><strong>Zero predictive intelligence in incumbent systems.</strong> Current LIMS is reactive — it records what happened. No platform offers credible predictive OOS models, adaptive scheduling intelligence, or AI-assisted root cause generation trained on lab-specific historical data.</div>
+      <div class="gap-impact imp-critical">CRITICAL</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Instrument Connectivity</div>
+      <div class="gap-desc"><strong>Every integration is a bespoke custom project.</strong> There is no universal instrument abstraction layer. HPLC, mass spec, and plate reader integrations are individually coded and break on firmware updates. A lab with 40 instrument types has 40 fragile middleware connections.</div>
+      <div class="gap-impact imp-critical">CRITICAL</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">UX Modernity</div>
+      <div class="gap-desc"><strong>Enterprise UX from the early 2000s.</strong> Form-heavy, modal dialog-driven interfaces require 8–15 clicks for common tasks. No benchtop-optimised mobile view. Scientists spend 20–30% of bench time on data entry — a solvable problem that remains unsolved.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Semantic Search</div>
+      <div class="gap-desc"><strong>Keyword search across a decade of lab records is functionally useless.</strong> Scientists cannot find prior work by meaning. "Show me all experiments where we observed aggregation in antibody X at pH below 6" returns nothing without manual tagging. LLM-based search is transformative here.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">API Completeness</div>
+      <div class="gap-desc"><strong>API-first in marketing; API-incomplete in reality.</strong> Core LIMS actions — sample login, result entry, batch release — remain UI-only in most platforms. External automation, robotic integration, and pipeline orchestration are blocked by incomplete API coverage.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:16px;letter-spacing:0.1em;text-transform:uppercase">Operational &amp; Business Gaps</div>
+    <div class="gap-row">
+      <div class="gap-domain">Validation Tax</div>
+      <div class="gap-desc"><strong>GMP validation requirements effectively freeze platform evolution.</strong> Any change, however minor, triggers CSV re-execution. Vendors cannot iterate their platform under GMP customer pressure. Labs get a system that was state-of-the-art in 2018 and cannot be safely updated.</div>
+      <div class="gap-impact imp-critical">CRITICAL</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Implementation Cost</div>
+      <div class="gap-desc"><strong>LIMS implementations routinely cost 3–5× the software licence.</strong> Median pharma LIMS implementation is $2–5M over 18–24 months. The implementation cost is a product design failure — it reflects how hard the software is to configure, not the complexity of the lab's requirements.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Inspection Readiness</div>
+      <div class="gap-desc"><strong>Compliance is a crisis response, not a continuous state.</strong> Labs spend 2–4 weeks before every FDA/EMA inspection compiling records that the LIMS already holds. No current platform provides a real-time inspection readiness score or auto-compiled data packages.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+    <div class="gap-row">
+      <div class="gap-domain">Knowledge Retention</div>
+      <div class="gap-desc"><strong>Institutional knowledge lives in senior scientists, not in systems.</strong> When experienced analysts leave, their understanding of method quirks, known instrument behaviours, and historical anomalies disappears. LIMS captures results but not context, rationale, or interpretation.</div>
+      <div class="gap-impact imp-high">HIGH</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER: PAIN POINTS -->
+
+<section class="chapter reveal" id="pain">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 06 · USER RESEARCH</div>
+    <h2>Pain Points by User Persona<br><em>Who Suffers, How, and Why It Matters</em></h2>
+    <p class="chapter-lead">The same LIMS is experienced completely differently by a bench scientist, a lab manager, and a QA compliance lead. Designing for one persona at the expense of others is why LIMS systems are universally disliked by someone in every lab.</p>
+  </div>
+
+  <div class="persona-grid">
+
+```
+<div class="persona-card">
+  <div class="persona-icon">🔬</div>
+  <div class="persona-role">Bench Scientist / Analyst</div>
+  <div class="persona-context">PRIMARY USER · 6–8 HRS/DAY IN SYSTEM</div>
+
+  <div class="pain-item">
+    <strong>Data Entry Theatre</strong>
+    Re-entering results that the instrument already has electronically. Transcription takes 30–60 min/day and introduces error risk. The system is slower than paper for execution tasks.
+    <div class="pain-quote">"I just ran a 96-well plate. The instrument saved it. Now I have to type every number in again."</div>
+  </div>
+  <div class="pain-item">
+    <strong>Context Switching Overhead</strong>
+    SOP is in a document management system. Protocol is in LIMS. Notes are in a paper notebook. Instrument is talking to middleware. None of these are connected. Every task requires 4 open browser tabs.
+  </div>
+  <div class="pain-item">
+    <strong>No Intelligent Assistance</strong>
+    When an anomalous result appears, the system flags OOS but provides no context — no history of similar flags, no reagent lot cross-reference, no analyst comparison. Scientists investigate blindly.
+    <div class="pain-quote">"It tells me it's out of spec. It doesn't tell me if this has happened before or why."</div>
+  </div>
+  <div class="pain-item">
+    <strong>Mobile Experience Failure</strong>
+    Benchtop work requires gloves, limited desk space, and eyes on the sample. The LIMS requires a full keyboard, screen-sized UI, and a wired connection. Voice entry and tablet-first design are absent.
+  </div>
+</div>
+
+<div class="persona-card">
+  <div class="persona-icon">📊</div>
+  <div class="persona-role">Lab Manager / Operations Lead</div>
+  <div class="persona-context">OPERATIONAL OWNER · SCHEDULING, QC, CAPACITY</div>
+
+  <div class="pain-item">
+    <strong>Zero Visibility Across the Lab Floor</strong>
+    No real-time dashboard showing what is in-progress, what is late, where the bottlenecks are, and which instruments are tied up. Status is obtained by walking the floor or calling analysts.
+    <div class="pain-quote">"I genuinely don't know if we're on track to release the batch today without asking three people."</div>
+  </div>
+  <div class="pain-item">
+    <strong>Instrument Scheduling is Manual</strong>
+    Instrument booking is done via Outlook calendar or a whiteboard. When instruments break, there is no way to automatically reassign pending work to available capacity. Rescheduling is entirely manual.
+  </div>
+  <div class="pain-item">
+    <strong>Report Generation is a Project</strong>
+    Monthly KPI reports require exporting LIMS data to Excel, reformatting, calculating metrics, and building charts. A task that should auto-generate takes 4–8 hours every month.
+  </div>
+  <div class="pain-item">
+    <strong>Staff Training Complexity</strong>
+    LIMS onboarding for new analysts is weeks-long because the system has no contextual guidance. Every task requires referencing an external training manual. Turnover is expensive in LIMS-heavy labs.
+    <div class="pain-quote">"We have a 40-page SOP just for how to use the LIMS. That is a UX problem."</div>
+  </div>
+</div>
+
+<div class="persona-card">
+  <div class="persona-icon">⚖️</div>
+  <div class="persona-role">QA / Compliance Lead</div>
+  <div class="persona-context">COMPLIANCE OWNER · AUDIT READINESS, CAPA, GxP</div>
+
+  <div class="pain-item">
+    <strong>Inspection Preparation Crisis</strong>
+    Every regulatory inspection triggers a 2–4 week emergency to compile study records, verify audit trail completeness, check e-signature coverage, and close open CAPAs. This should be a real-time state, not a crisis response.
+    <div class="pain-quote">"We found three unsigned records the night before an FDA inspection. That was a bad night."</div>
+  </div>
+  <div class="pain-item">
+    <strong>CAPA Linkage is Manual</strong>
+    OOS investigation in LIMS is disconnected from the CAPA in the QMS. QA manually cross-references systems to track whether corrective actions were completed. Nothing is automated or linked.
+  </div>
+  <div class="pain-item">
+    <strong>Data Integrity Verification is Reactive</strong>
+    Audit trail review happens after the fact during investigations. There is no proactive data integrity monitoring — no alerts for suspicious patterns like results entered at unusual hours, backdated entries, or duplicate submissions.
+    <div class="pain-quote">"ALCOA+ is a principle. The system doesn't actually enforce it proactively."</div>
+  </div>
+  <div class="pain-item">
+    <strong>Change Control Bottleneck</strong>
+    Every system change requires validation documentation. Simple configuration changes take months. QA is the gatekeeper for every update, making the system an obstacle to laboratory improvement.
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- CHAPTER: INNOVATION -->
+
+<section class="chapter reveal" id="innovation">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 07 · PRODUCT STRATEGY</div>
+    <h2>Opportunities for Innovation<br><em>The White Space Map</em></h2>
+    <p class="chapter-lead">These are the specific innovation vectors where next-generation product investment will create durable competitive advantage. Each represents a real market gap with a technology solution that is now viable.</p>
+  </div>
+
+  <div class="opp-grid">
+    <div class="opp-card o1">
+      <div class="opp-num">01</div>
+      <div class="opp-title">The AI Co-Scientist</div>
+      <div class="opp-body">Build an LLM-powered lab assistant trained on each organisation's own data — OOS history, method notes, instrument behaviour, analyst patterns. Scientists interact in natural language. The system surfaces context, predicts failures, and explains anomalies. This is not a chatbot — it is institutional memory made queryable.</div>
+      <div class="opp-signals">
+        <span class="pill pill-b">LLM + RAG</span><span class="pill pill-g">Lab-specific fine-tuning</span><span class="pill pill-y">High WTP</span>
+      </div>
+    </div>
+    <div class="opp-card o2">
+      <div class="opp-num">02</div>
+      <div class="opp-title">Risk-Based Continuous Validation</div>
+      <div class="opp-body">Replace monolithic CSV cycles with a continuous validation model. A validated core layer changes infrequently with full GMP rigour. A configuration layer above it changes freely using automated regression testing and AI-generated impact assessments. Labs get agility; regulators get auditability. This alone unlocks the GMP market for cloud-native platforms.</div>
+      <div class="opp-signals">
+        <span class="pill pill-r">GMP Unlocking</span><span class="pill pill-b">Automated testing</span><span class="pill pill-g">GAMP 5 aligned</span>
+      </div>
+    </div>
+    <div class="opp-card o3">
+      <div class="opp-num">03</div>
+      <div class="opp-title">Universal Instrument Intelligence Layer</div>
+      <div class="opp-body">Build a cloud-based instrument integration service with 300+ pre-certified adapters. New instruments onboard via self-service wizard. The layer normalises all instrument output into a canonical data model. Instrument firmware updates are handled centrally — no more broken integrations. Monetise as a standalone service consumed by any LIMS.</div>
+      <div class="opp-signals">
+        <span class="pill pill-b">Platform play</span><span class="pill pill-y">Network effects</span><span class="pill pill-g">High switching cost</span>
+      </div>
+    </div>
+    <div class="opp-card o4">
+      <div class="opp-num">04</div>
+      <div class="opp-title">Autonomous Lab Orchestration</div>
+      <div class="opp-body">LIMS as the control layer for robotic and automated lab workflows. Liquid handlers, plate stackers, and automated storage systems receive instructions from LIMS and return results directly. Combine with active learning AI to propose the next experiment. The system becomes a participant in the scientific process, not just a recorder of it.</div>
+      <div class="opp-signals">
+        <span class="pill pill-b">Robotics API</span><span class="pill pill-b">Active learning</span><span class="pill pill-r">Biotech market</span>
+      </div>
+    </div>
+    <div class="opp-card o5">
+      <div class="opp-num">05</div>
+      <div class="opp-title">Continuous Compliance Posture</div>
+      <div class="opp-body">A real-time compliance health score — not a module, but a core system feature. The platform continuously monitors audit trail completeness, e-signature coverage, CAPA closure rates, calibration status, and training currency. Surfaces a single "inspection readiness" index with drill-down to every deficiency. Inspection preparation becomes a non-event.</div>
+      <div class="opp-signals">
+        <span class="pill pill-g">QA persona WTP</span><span class="pill pill-y">Reduces audit risk</span><span class="pill pill-r">Regulatory differentiator</span>
+      </div>
+    </div>
+    <div class="opp-card o6">
+      <div class="opp-num">06</div>
+      <div class="opp-title">Composable, Validated Building Blocks</div>
+      <div class="opp-body">Deconstruct LIMS functionality into validated, pre-certified workflow building blocks. A stability study module, a method validation module, an OOS investigation module — each independently validated per GAMP 5. Labs assemble workflows without custom development. Validation is inherited, not re-performed. Implementations drop from 18 months to 6 weeks.</div>
+      <div class="opp-signals">
+        <span class="pill pill-g">10× faster deployment</span><span class="pill pill-b">No-code config</span><span class="pill pill-y">Market disruption</span>
+      </div>
+    </div>
+    <div class="opp-card o1">
+      <div class="opp-num">07</div>
+      <div class="opp-title">Multi-Omics Data Fabric</div>
+      <div class="opp-body">As biotech pipelines move beyond small molecules, labs generate genomic, proteomic, metabolomic, and imaging data alongside traditional assay results. A next-gen LIMS must serve as the connective tissue — linking all data types to the originating sample, maintaining FAIR data principles, and enabling cross-omics queries that are currently impossible without bespoke bioinformatics infrastructure.</div>
+      <div class="opp-signals">
+        <span class="pill pill-b">Biotech market</span><span class="pill pill-g">FAIR compliance</span><span class="pill pill-p">Publication readiness</span>
+      </div>
+    </div>
+    <div class="opp-card o2">
+      <div class="opp-num">08</div>
+      <div class="opp-title">Voice-First Benchtop Interface</div>
+      <div class="opp-body">A purpose-built voice interface for lab use — hands-free, glove-tolerant, trained on scientific terminology. Analysts narrate observations, confirm steps, and flag anomalies without touching a keyboard. Responses are transcribed, structured, and stored with provenance. The system asks clarifying questions when entries are ambiguous. This transforms data capture from a post-hoc chore to a real-time scientific record.</div>
+      <div class="opp-signals">
+        <span class="pill pill-b">Voice AI</span><span class="pill pill-g">UX differentiator</span><span class="pill pill-y">Analyst persona</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER: ARCHITECTURE -->
+
+<section class="chapter reveal" id="architecture">
+  <div class="chapter-header">
+    <div class="chapter-num">SECTION 08 · FUTURE STATE</div>
+    <h2>Next-Generation LIMS Architecture<br><em>Design Principles + System Design</em></h2>
+    <p class="chapter-lead">A proposed architecture grounded in the gaps and opportunities identified above. Not a feature list — a set of architectural decisions with explicit rationale for why each layer exists and what it solves.</p>
+  </div>
+
+  <div class="arch-system">
+    <div class="arch-system-title">NEXUS — Unified Lab Intelligence Platform</div>
+    <div class="arch-system-sub">Architecture v2.0 · Composable · AI-Native · Continuously Compliant</div>
+
+```
+<div class="arch-stack">
+  <div class="arch-tier">
+    <div class="tier-label t-ux">
+      <div class="tier-name">Intelligence Surface</div>
+      <div class="tier-sub">How scientists interact</div>
+    </div>
+    <div class="tier-content">
+      <span class="tier-chip ai">NL Lab Assistant (LLM + RAG)</span>
+      <span class="tier-chip ai">Predictive OOS Engine</span>
+      <span class="tier-chip ai">Anomaly Explanation AI</span>
+      <span class="tier-chip new">Voice-First Benchtop UI</span>
+      <span class="tier-chip new">Role-Contextual Dashboards</span>
+      <span class="tier-chip ai">Semantic Cross-Study Search</span>
+      <span class="tier-chip">Mobile / Tablet (offline-capable)</span>
+    </div>
+  </div>
+
+  <div class="arch-tier">
+    <div class="tier-label t-ai">
+      <div class="tier-name">AI &amp; Analytics Core</div>
+      <div class="tier-sub">The learning layer</div>
+    </div>
+    <div class="tier-content">
+      <span class="tier-chip ai">Lab-specific fine-tuned LLM</span>
+      <span class="tier-chip ai">Time-series anomaly detection</span>
+      <span class="tier-chip ai">Multivariate SPC models</span>
+      <span class="tier-chip ai">Active learning experiment proposer</span>
+      <span class="tier-chip ai">Regulatory risk scorer</span>
+      <span class="tier-chip diff">Knowledge graph (method + reagent + analyst)</span>
+      <span class="tier-chip">Federated ML (multi-site, privacy-preserving)</span>
+    </div>
+  </div>
+
+  <div class="arch-tier">
+    <div class="tier-label t-wf">
+      <div class="tier-name">Workflow Engine</div>
+      <div class="tier-sub">How lab work is executed</div>
+    </div>
+    <div class="tier-content">
+      <span class="tier-chip new">Composable Validated Building Blocks</span>
+      <span class="tier-chip">BPMN-based Protocol Designer</span>
+      <span class="tier-chip">Dynamic branching (OOS, conditional)</span>
+      <span class="tier-chip">Multi-site workflow orchestration</span>
+      <span class="tier-chip new">Risk-based continuous validation engine</span>
+      <span class="tier-chip">ELN + LIMS unified execution layer</span>
+      <span class="tier-chip">Robotic lab API (Hamilton, Tecan, Beckman)</span>
+    </div>
+  </div>
+
+  <div class="arch-tier">
+    <div class="tier-label t-data">
+      <div class="tier-name">Data &amp; Integration</div>
+      <div class="tier-sub">The connective tissue</div>
+    </div>
+    <div class="tier-content">
+      <span class="tier-chip diff">Universal Instrument Connector (300+ adapters)</span>
+      <span class="tier-chip">HL7 FHIR / v2 bi-directional</span>
+      <span class="tier-chip">ERP / MES / CTMS / EDC connectors</span>
+      <span class="tier-chip new">Federated Study Data Lake</span>
+      <span class="tier-chip">Multi-omics data fabric (genomic, proteomic)</span>
+      <span class="tier-chip">IoT real-time sensor pipeline</span>
+      <span class="tier-chip">FAIR data layer (DOI, ontology tagging)</span>
+      <span class="tier-chip">Webhook + full REST API coverage</span>
+    </div>
+  </div>
+
+  <div class="arch-tier">
+    <div class="tier-label t-comp">
+      <div class="tier-name">Compliance Core</div>
+      <div class="tier-sub">Non-negotiable, always-on</div>
+    </div>
+    <div class="tier-content">
+      <span class="tier-chip">Immutable audit trail (append-only store)</span>
+      <span class="tier-chip">21 CFR Part 11 / Annex 11 native</span>
+      <span class="tier-chip">ALCOA+ by design</span>
+      <span class="tier-chip new">Real-time inspection readiness score</span>
+      <span class="tier-chip new">Proactive data integrity monitoring</span>
+      <span class="tier-chip">CAPA auto-linkage from OOS events</span>
+      <span class="tier-chip">GxP change control with AI impact assessment</span>
+    </div>
+  </div>
+
+  <div class="arch-tier">
+    <div class="tier-label t-infra">
+      <div class="tier-name">Infrastructure</div>
+      <div class="tier-sub">Scale &amp; security foundation</div>
+    </div>
+    <div class="tier-content">
+      <span class="tier-chip">Cloud-native (AWS / Azure / GCP)</span>
+      <span class="tier-chip">Multi-tenant with data sovereignty controls</span>
+      <span class="tier-chip">On-prem and hybrid deployment</span>
+      <span class="tier-chip">Zero-trust security model</span>
+      <span class="tier-chip">Elastic scaling for burst workloads</span>
+      <span class="tier-chip">99.99% SLA with geo-redundancy</span>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="principles-grid">
+    <div class="principle">
+      <div class="principle-icon">🧱</div>
+      <div class="principle-title">Composable Over Monolithic</div>
+      <div class="principle-body">Functionality is delivered as validated building blocks, not a monolithic application. Labs assemble their LIMS without custom development. Each block is independently certified, versioned, and replaceable. Validation is inherited from the block, not re-executed per deployment. This reduces implementation time from 18 months to 6 weeks.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-icon">🧠</div>
+      <div class="principle-title">AI-Native, Not AI-Augmented</div>
+      <div class="principle-body">AI is not a feature layer bolted onto a workflow engine. The AI core is trained on each organisation's own data and is the primary interface for investigation, search, and insight generation. The workflow engine executes what the AI and scientist agree on. Intelligence is structural, not optional.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-icon">🔗</div>
+      <div class="principle-title">Integration-First Architecture</div>
+      <div class="principle-body">Every capability is API-complete from day one. No functionality exists only in the UI. The platform is designed to be a node in an enterprise data fabric — consuming from instruments, MES, ERP, and clinical systems, and producing for regulatory, BI, and AI analysis. Integration is not an afterthought — it's the product.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-icon">⚖️</div>
+      <div class="principle-title">Compliance as Infrastructure</div>
+      <div class="principle-body">The compliance layer is not a feature that QA turns on. Audit trail, e-signature, data integrity, and inspection readiness are foundational infrastructure that exists before any workflow is configured. You cannot turn off ALCOA+ compliance any more than you can turn off the database.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-icon">🌐</div>
+      <div class="principle-title">Federated Multi-Site Intelligence</div>
+      <div class="principle-body">Global organisations get aggregate intelligence without surrendering data sovereignty. Each site's data is governed locally. A global AI layer trained on federated, anonymised signals surfaces cross-site patterns — method failure correlations, supply chain risks, instrument drift trends — that no single-site LIMS can see.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-icon">🎯</div>
+      <div class="principle-title">Persona-Centred Design</div>
+      <div class="principle-body">Scientist, lab manager, and QA lead are served by fundamentally different interfaces optimised for their context. The scientist gets a benchtop-optimised, voice-capable minimal UI. The manager gets a real-time operations dashboard. The QA lead gets a compliance posture view. One system, three experiences, all from the same data.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<div class="report-footer">
+  <div>
+    <div class="footer-verdict">The lab is the most <em>data-rich</em>, compliance-critical environment in the enterprise — and the most poorly served by its software.</div>
+    <p class="footer-body">The next generation of LIMS will not be won by the vendor with the most features or the deepest compliance capability. It will be won by the platform that makes laboratory intelligence effortless — where AI surfaces what matters, compliance is invisible because it's automatic, and scientists spend their time on science rather than software. The architecture is achievable today. The market gap is real. The timing is right.</p>
+  </div>
+  <div class="footer-meta">
+    <div class="footer-meta-item">Format <span>Product Strategy · Consulting Brief</span></div>
+    <div class="footer-meta-item">Industries Covered <span>6 Verticals</span></div>
+    <div class="footer-meta-item">Use Cases Mapped <span>80+</span></div>
+    <div class="footer-meta-item">Gap Categories <span>Functional · Tech · Operational · UX</span></div>
+    <div class="footer-meta-item">Innovation Vectors <span>8 Identified</span></div>
+    <div class="footer-meta-item">Architecture Layers <span>6-Tier + 6 Principles</span></div>
+    <div class="footer-meta-item">Version <span>2.0 — Expanded &amp; Corrected</span></div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.05 });
+reveals.forEach(r => ro.observe(r));
+
+// Industry tabs
+function showIndustry(id, tab) {
+  document.querySelectorAll('.ind-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ind-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+
+// Sidenav active on scroll
+const chapters = document.querySelectorAll('section[id], div[id="judge"]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  chapters.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navLinks.forEach(n => {
+    const href = n.getAttribute('href').replace('#','');
+    n.classList.toggle('active', href === cur);
+  });
+}, { passive: true });
+</script>
+
+</body>
+</html>
